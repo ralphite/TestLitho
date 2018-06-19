@@ -14,20 +14,14 @@ import static com.facebook.yoga.YogaEdge.ALL;
 @LayoutSpec
 public class ListItemSpec {
 
-    @OnCreateLayout
-    static Component onCreateLayout(ComponentContext c) {
+  @OnCreateLayout
+  static Component onCreateLayout(ComponentContext c) {
 
-        return Column.create(c)
-                .paddingDip(ALL, 16)
-                .backgroundColor(Color.WHITE)
-                .child(
-                        Text.create(c)
-                                .text("Hello world")
-                                .textSizeSp(40))
-                .child(
-                        Text.create(c)
-                                .text("Litho tutorial")
-                                .textSizeSp(20))
-                .build();
-    }
+    return Column.create(c)
+        .paddingDip(ALL, 16)
+        .backgroundColor(Color.WHITE)
+        .child(Text.create(c).text("Hello world").textSizeSp(40))
+        .child(Text.create(c).text("Litho tutorial").textSizeSp(20))
+        .build();
+  }
 }
