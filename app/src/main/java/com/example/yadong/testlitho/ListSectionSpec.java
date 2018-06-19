@@ -2,30 +2,50 @@ package com.example.yadong.testlitho;
 
 import android.graphics.Color;
 
+import com.facebook.litho.annotations.FromEvent;
+import com.facebook.litho.annotations.OnEvent;
 import com.facebook.litho.sections.Children;
 import com.facebook.litho.sections.SectionContext;
 import com.facebook.litho.sections.annotations.GroupSectionSpec;
 import com.facebook.litho.sections.annotations.OnCreateChildren;
-import com.facebook.litho.sections.common.SingleComponentSection;
+import com.facebook.litho.sections.common.DataDiffSection;
+import com.facebook.litho.sections.common.RenderEvent;
+import com.facebook.litho.widget.ComponentRenderInfo;
+import com.facebook.litho.widget.RenderInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @GroupSectionSpec
 public class ListSectionSpec {
 
   @OnCreateChildren
   static Children onCreateChildren(final SectionContext c) {
-    Children.Builder builder = Children.create();
+    return Children.create()
+        .child(
+            DataDiffSection.create(c)
+                .data(generateData(32))
+                .renderEventHandler(ListSection.onRender(c)))
+        .build();
+  }
 
-    for (int i = 0; i < 32; i++) {
-      builder.child(
-          SingleComponentSection.create(c)
-              .key(String.valueOf(i))
-              .component(
-                  ListItem.create(c)
-                      .color(i % 2 == 0 ? Color.WHITE : Color.LTGRAY)
-                      .title(i + ". Hello, world!")
-                      .subtitle("Litho tutorial")
-                      .build()));
+  private static List<Object> generateData(int count) {
+    final List<Object> data = new ArrayList<>(count);
+    for (int i = 0; i < count; i++) {
+      data.add(i);
     }
-    return builder.build();
+    return data;
+  }
+
+  @OnEvent(RenderEvent.class)
+  static RenderInfo onRender(final SectionContext c, @FromEvent Integer model) {
+    return ComponentRenderInfo.create()
+        .component(
+            ListItem.create(c)
+                .color(model % 2 == 0 ? Color.WHITE : Color.LTGRAY)
+                .title(model + ". Hello, world!")
+                .subtitle("Litho tutorial")
+                .build())
+        .build();
   }
 }
