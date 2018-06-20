@@ -30,6 +30,10 @@ public class ListSectionSpec {
     return Children.create()
         .child(
             SingleComponentSection.create(c)
+                .component(AdsBottomSheet.create(c).title("Some product").description("Price $$$").build())
+                .build())
+        .child(
+            SingleComponentSection.create(c)
                 .component(
                     RecyclerCollectionComponent.create(c)
                         .disablePTR(true)
