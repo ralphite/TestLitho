@@ -2,13 +2,17 @@ package com.example.yadong.testlitho;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
+import com.facebook.litho.annotations.FromEvent;
+import com.facebook.litho.annotations.OnEvent;
+import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.sections.SectionContext;
 import com.facebook.litho.sections.widget.RecyclerCollectionComponent;
-import com.facebook.litho.widget.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             .section(ListSection.create(new SectionContext(context)).build())
             .build();
 
-    setContentView(LithoView.create(context, component));
+    final Component ar = ArContainer.create(context).build();
+
+    setContentView(LithoView.create(context, ar));
   }
 }
