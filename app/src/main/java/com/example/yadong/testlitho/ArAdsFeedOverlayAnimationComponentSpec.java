@@ -19,9 +19,9 @@ import com.facebook.yoga.YogaAlign;
 public class ArAdsFeedOverlayAnimationComponentSpec {
   @OnCreateLayout
   static Component onCreateLayout(ComponentContext c) {
-      DraweeController controller = Fresco.newDraweeControllerBuilder()
-              .setAutoPlayAnimations(true)
-    .build();
+//      DraweeController controller = Fresco.newDraweeControllerBuilder()
+//              .setAutoPlayAnimations(true)
+//    .build();
     return Row.create(c)
         .alignContent(YogaAlign.CENTER)
         .alignItems(YogaAlign.CENTER)
@@ -29,7 +29,7 @@ public class ArAdsFeedOverlayAnimationComponentSpec {
         .heightDip(120)
         .child(
             Column.create(c)
-                .child(Image.create(c).drawableRes(R.drawable.ic_launcher_foreground).build())
+                .child(Image.create(c).drawableRes(R.drawable.ic_camera_24).widthDip(50).heightDip(50).alignSelf(YogaAlign.CENTER).build())
                 .child(
                     Text.create(c)
                         .text("Tap to Try On")
