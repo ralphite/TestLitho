@@ -59,6 +59,7 @@ public class ArAdsFeedOverlayAnimationComponentSpec {
   @OnCreateTransition
   static Transition onCreateTransition(ComponentContext c) {
     return Transition.create(CAMERA_TRANSITION_KEY)
-        .animate(AnimatedProperties.SCALE);
+        .animate(AnimatedProperties.SCALE)
+        .animator(Transition.timing(1000));
   }
 }
